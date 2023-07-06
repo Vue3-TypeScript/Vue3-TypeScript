@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 2.点击a元素来修改URL的hash值 -->
+    <a href="#/home">home</a>
+    <a href="#/about">about</a>
+
+    <div class="content">Default</div>
+  </div>
+
+  <script>
+    const contentEl = document.querySelector('.content');
+    changePage() // 1.根据当前hash修改页面显示的内容
+    // 3.监听hash的变化（点击a标签会改变hash值）
+    window.addEventListener("hashchange", () => {
+      changePage()
+    })
+    // 4.根据URL的hash来修改页面显示的内容
+    function changePage(){
+      switch(location.hash) {
+        case "#/home":
+          contentEl.innerHTML = "Home";
+          break;
+        case "#/about":
+          contentEl.innerHTML = "About";
+          break;
+        default:
+          contentEl.innerHTML = "Default";
+      }
+    }
+  </script>
+</body>
+</html>

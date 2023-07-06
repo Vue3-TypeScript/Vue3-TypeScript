@@ -1,0 +1,15 @@
+import { createApp } from 'vue'
+// import App from './App.vue'
+// import App from './01_过渡动画的基本使用/App.vue'
+// import App from './02_CSS_animation动画的实现/App.vue'
+// import App from './03_同时用transition和animation/App.vue'
+// import App from './04_过渡的模式mode/App.vue'
+// import App from './05_动态组件的切换/App.vue'
+// import App from './06_结合Animate第三方动画库使用/App.vue'
+// import App from './07_transition组件生命周期的钩子/App.vue'
+// import App from './08_结合GSAP第三方动画库使用/App.vue'
+// import App from './09_GSAP库来实现数字变化效果/App.vue'
+// import App from './10_transition-group列表动画基本使用/App.vue'
+import App from './11_transition-group列表的交替动画/App.vue'
+import "animate.css";
+createApp(App).mount('#app')
