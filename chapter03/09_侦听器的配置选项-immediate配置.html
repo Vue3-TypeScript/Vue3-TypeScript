@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <h2>{{info.name}}</h2>
+    <h2>{{info.book.name}}</h2>
+    <button @click="changeInfo">改变info</button>
+    <button @click="changeInfoName">改变info.name</button>
+    <button @click="changeInfoBookName">改变info.book.name</button>
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          info: { name: "coderwhy", age: 18, book: {name: 'Vue.js 3+TS'} }
+        }
+      },
+      watch: {
+        // 侦听info对象的更新
+        info: {
+          handler: function(newInfo, oldInfo) {
+            console.log( newInfo === oldInfo);
+            console.log("newValue:", newInfo, "oldValue:", oldInfo);
+          },
+          // 深度侦听 info 对象的更新（info内部发生的改变是可以侦听到的）
+          deep: true,
+          immediate: true // 让handler中定义的函数 立即执行一次
+        }
+      },
+      methods: {
+        changeInfo() {
+          this.info = { name: "kobe", age: 18, book: {name: 'Vue3+TS'} }
+        },
+        changeInfoName() {
+          this.info.name = "rose";
+        },
+        changeInfoBookName() {
+          this.info.book.name = "React+TS";
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>
+

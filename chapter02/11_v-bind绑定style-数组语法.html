@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <div :style="[{color:'red', fontSize:'15px'}]">v-bind绑定style-数组语法</div>
+    <div :style="[style1Obj, style2Obj]">v-bind绑定style-数组语法</div>
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: "Hello World",
+          style1Obj: {
+            color: 'red',
+            fontSize: '16px'
+          },
+          style2Obj: {
+            textDecoration: "underline"
+          }
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

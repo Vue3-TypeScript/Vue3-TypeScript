@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- :style="{cssPropertyName: cssPropertyValue}" -->
+    <!-- 1.基本用法 -->
+    <div :style="{color: finalColor, 'font-size': '16px'}">v-bind绑定style-对象语法</div>
+    <div :style="{color: finalColor, fontSize: '16px'}">v-bind绑定style-对象语法</div>
+    <div :style="{color: finalColor, fontSize: finalFontSize + 'px'}">v-bind绑定style-对象语法</div>
+
+    <!-- 2.绑定一个data中的属性值, 并且是一个对象 -->
+    <div :style="finalStyleObj">绑定一个data中的属性</div>
+    <!-- 3.绑定调用methods方法返回的对象 -->
+    <div :style="getFinalStyleObj()">methods方法返回的对象</div>
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: "Hello World",
+          finalColor: 'red',
+          finalFontSize: 16,
+          finalStyleObj: {
+            'font-size': '16px',
+            fontWeight: 700,
+            backgroundColor: '#ddd'
+          }
+        }
+      },
+      methods: {
+        getFinalStyleObj() {
+          return {
+            'font-size': '16px',
+            fontWeight: 700,
+            backgroundColor: '#ddd'
+          }
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

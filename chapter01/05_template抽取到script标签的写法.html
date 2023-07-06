@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div id="app"></div>
+
+  <script type="x-template" id="why">
+    <div>
+      <h2>{{message}}</h2>
+      <h2>{{counter}}</h2>
+      <button @click='increment'>+1</button>
+      <button @click='decrement'>-1</button>
+    </div>
+  </script>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: '#why', // 传#why字符窜底层会转成 document.querySelector("#why")
+      data: function() {
+        return {
+          message: "Hello World",
+          counter: 100
+        }
+      },
+      methods: {
+        increment() {
+          this.counter++;
+        },
+        decrement() {
+          this.counter--;
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

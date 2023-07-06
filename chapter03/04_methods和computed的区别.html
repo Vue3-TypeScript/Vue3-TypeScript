@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <template id="my-app">
+    <h4>{{getFullName()}}</h4>
+    <h4>{{getFullName()}}</h4>
+    <h4>{{getFullName()}}</h4>
+
+    <h4>{{fullName}}</h4>
+    <h4>{{fullName}}</h4>
+    <h4>{{fullName}}</h4>
+    <button @click="changeFirstName">修改firstName</button>
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          firstName: "Kobe",
+          lastName: "Bryant"
+        }
+      },
+      computed: {
+        // 计算属性是有缓存的, 当我们多次使用计算属性时, 计算属性中的运算只会执行一次.
+        // 计算属性会随着依赖的数据(firstName)的改变, 而进行重新计算.
+        fullName() {
+          console.log("computed的fullName中的计算");
+          return this.firstName + " " + this.lastName;
+        }
+      },
+      methods: {
+        getFullName() {
+          console.log("methods的getFullName中的计算");
+          return this.firstName + " " + this.lastName;
+        },
+        changeFirstName() {
+          this.firstName = "Coder"
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

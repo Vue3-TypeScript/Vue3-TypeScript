@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <h4>{{message}}</h4>
+    <!-- 3.使用局部注册的组件 -->
+    <component-a></component-a>
+  </template>
+
+  <!-- 1.编写ComponentA组件的模板 -->
+  <template id="component-a">
+    <p style="border: 1px solid #999;">
+        {{content}}
+    </p>
+  </template>
+  <script src="./js/vue.js"></script>
+  <script>
+
+    const ComponentA = {
+      template: "#component-a",
+      data() {
+          return {
+              content:`
+                我是在根组件App中局部注册的ComponentA组件
+               （ComponentA组件只能在当前根组件的template中使用）
+               `
+          }
+      }
+    }
+    const App = {
+      template: '#my-app',
+      components: {
+        // 2.局部注册ComponentA组件（ key: 组件名称 ； value: 组件对象）
+        ComponentA: ComponentA
+      },
+      data() {
+        return {
+          message: "我是根组件 App"
+        }
+      }
+    }
+
+    const app = Vue.createApp(App);
+    // app.component("ComponentA", ComponentA); // 注册全局组件
+    app.mount('#app');
+  </script>
+</body>
+</html>

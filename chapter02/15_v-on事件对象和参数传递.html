@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 1.Vue3框架默认会自动传入event对象, 可以在方法中获取 -->
+    <button @click="btn1Click">自动传入event对象</button>
+    <!-- 2.手动传入event对象：$event是事件发生时的事件对象，固定$event语法 -->
+    <button @click="btn2Click($event, 'coderwhy', 18)">手动传入event对象</button>
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: "Hello World"
+        }
+      },
+      methods: {
+        btn1Click(event) {
+          console.log(event);
+        },
+        btn2Click(event, name, age) {
+          console.log(event, name, age);
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

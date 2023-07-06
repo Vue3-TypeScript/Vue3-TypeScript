@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <!-- 1.渲染系统(直接拷贝前面编写的过来) -->
+  <script src="./renderer.js"></script>
+  <!-- 2.响应式系统(拷贝前面编写的过来，记住要删了测试的代码) -->
+  <script src="./reactive.js"></script>
+  <!-- 3.createApp入口 -->
+  <script src="./index.js"></script>
+  <script>
+    // 1.创建根组件
+    const App = {
+      data: reactive({
+        counter: 0
+      }),
+      render() {
+        return h("div", null, [
+          h("h2", null, `当前计数: ${this.data.counter}`),
+          h("button", {
+            onClick: () => {
+              this.data.counter++
+              console.log(this.data.counter);
+            }
+          }, "+1")
+        ])
+      }
+    }
+    // 2.挂载根组件
+    const app = createApp(App);
+    app.mount("#app");
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .comps-a,
+        .comps-b,
+        .comps-c{
+            border: 1px solid #999;
+            margin: 3px;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <!--7.引用component-c全局组件, DOM使用不支持<ComponentC></ComponentC>引用  -->
+       <component-c></component-c>
+        <!--6.引用一个component-b全局组件  -->
+       <component-b></component-b>
+        <!--3.引用一个component-a全局组件  -->
+       <component-a></component-a>
+    </template>
+
+    <!-- 1.编写一个component-a全局组件引用的模板 -->
+    <template id="component-a">
+        <div class="comps-a">
+            <h4>{{title}}</h4>
+            <p>{{desc}}</p>
+            <button @click="btnClick">按钮点击</button>
+        </div>
+    </template>
+    <!-- 4.编写一个component-b全局组件引用的模板 -->
+    <template id="component-b">
+        <div class="comps-b">
+            <input type="text" v-model="message">
+            <h4>{{message}}</h4>
+        </div>
+    </template>
+    <!-- 7.编写一个component-c全局组件引用的模板 -->
+    <template id="component-c">
+        <div class="comps-c">
+          ComponentC
+        </div>
+    </template>
+
+
+    <script src="./js/vue.js"></script>
+    <script>
+      const App = {
+        template: "#my-app"
+      };
+
+      const app = Vue.createApp(App);
+
+      // 2.使用app注册一个component-a全局组件 app.component()
+      // 全局组件: 意味着注册的这个组件可以在任何的组件模板中使用
+      app.component("component-a", {
+        template: "#component-a", // 引入第一步定义的模板
+        data() {
+          return {
+            title: "我是标题",
+            desc: "内容显示区域.....",
+          };
+        },
+        methods: {
+          btnClick() {
+            console.log("按钮的点击");
+          },
+        },
+      });
+      // 5.使用app注册一个component-b全局组件 app.component()
+      app.component("component-b", {
+        template: "#component-b", // 引入第一步定义的模板
+        data() {
+            return {
+                message: "Hello World"
+            }
+        }
+      });
+      // 8.使用app注册一个 ComponentC 全局组件 app.component()
+      app.component("ComponentC", {
+        template: "#component-c", // 引入第一步定义的模板
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>

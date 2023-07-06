@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .area {
+      width: 100px;
+      height: 100px;
+      background: #ddd;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 1.完整写法: v-on:监听的事件="methods中方法" -->
+    <button v-on:click="btn1Click">监听按钮单击(完整写法)</button>
+    <div class="area" v-on:mousemove="mouseMove">监听鼠标移动事件</div>
+    <!-- 2.语法糖 -->
+    <button @click="btn1Click">监听按钮单击(简写)</button>
+    <!-- 3.绑定一个表达式: inline statement -->
+    <button @click="counter++">单击+1： {{counter}}</button>
+    <!-- 4.绑定一个对象 -->
+    <div class="area" v-on="{click: btn1Click, mousemove: mouseMove}">监听鼠标移动事件</div>
+    <!-- 5.v-on的简写，阅读性不好，不推荐 -->
+    <div class="area" @="{click: btn1Click, mousemove: mouseMove}">监听鼠标移动事件（简写）</div>
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: "Hello World",
+          counter: 100
+        }
+      },
+      methods: {
+        btn1Click() {
+          console.log("按钮1发生了单击");
+        },
+        mouseMove() {
+          console.log("鼠标移动");
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>   

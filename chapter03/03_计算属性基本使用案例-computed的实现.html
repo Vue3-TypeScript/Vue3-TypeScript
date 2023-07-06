@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <h4>{{fullName}}</h4>
+    <h4>{{result}}</h4>
+    <h4>{{reverseMessage}}</h4>
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          firstName: "Kobe",
+          lastName: "Bryant",
+          score: 80,
+          message: "Hello World"
+        }
+      },
+      computed: {
+        // 定义了一个计算属性叫fullname
+        fullName() {
+          return this.firstName + " " + this.lastName;
+        },
+        result() {
+          return this.score >= 60 ? "及格": "不及格";
+        },
+        reverseMessage() {
+          return this.message.split(" ").reverse().join(" ");
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

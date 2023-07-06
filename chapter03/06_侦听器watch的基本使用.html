@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    请输入问题: <input type="text" v-model="question">
+    <div>{{anwser}}</div>
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          // 1.需求：侦听question的变化时, 去进行一些逻辑的处理(JavaScript, 网络请求)
+          question: "",
+          anwser: ""
+        }
+      },
+      // 2.侦听器
+      watch: {
+        // 3.侦听question的变化
+        // question ：侦听的data中的属性的名称
+        // newValue ：变化后的新值
+        // oldValue ：变化前的旧值
+        question: function(newValue, oldValue) {
+          console.log("新值: ", newValue, "旧值", oldValue);
+          // 4.question 变化后调用 queryAnswer() 方法
+          this.queryAnswer();
+        }
+      },
+      methods: {
+        queryAnswer() {
+          this.anwser = `你的问题是：${this.question}? 答案：哈哈哈哈!`;
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

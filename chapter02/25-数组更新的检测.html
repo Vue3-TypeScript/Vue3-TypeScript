@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <h4>电影列表</h4>
+    <ul>
+      <li v-for="(movie, index) in movies">{{index+1}}.{{movie}}</li>
+    </ul>
+    <input type="text" v-model="newMovie">
+    <button @click="addMovie">添加电影</button>
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          newMovie: "",
+          movies: [
+            "星际穿越",
+            "盗梦空间"
+          ]
+        }
+      },
+      methods: {
+        addMovie() {
+          this.movies.push(this.newMovie);
+          this.newMovie = "";
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

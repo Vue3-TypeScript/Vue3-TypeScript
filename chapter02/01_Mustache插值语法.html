@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <template id="my-app">
+    <!-- 1.mustache语法的基本使用 -->
+    <h4>{{message}} - {{isShow}}</h4>
+    <!-- 2.是一个表达式 -->
+    <h4>{{counter * 10}}</h4>
+    <h4>{{ message.split(" ").join("-") }}</h4>
+    <!-- 3.也可以调用方法中的函数 -->
+    <h4>{{getReverseMessage()}}</h4>
+    <!-- 4.可以使用computed计算属性（会面会讲到） -->
+    <!-- 5.三元运算符 -->
+    <h4>{{ isShow ? "三元运算符": "" }}</h4>
+    <button @click="toggle">切换控制显示</button>
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: "Hello World",
+          counter: 100,
+          isShow: true
+        }
+      },
+      methods: {
+        getReverseMessage() {
+          return this.message.split(" ").reverse().join(" ");
+        },
+        toggle() {
+          this.isShow = !this.isShow;
+        }
+      }
+    }
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

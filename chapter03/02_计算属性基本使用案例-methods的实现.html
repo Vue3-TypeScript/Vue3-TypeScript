@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <h4>{{getFullName()}}</h4>
+    <h4>{{getResult()}}</h4>
+    <h4>{{getReverseMessage()}}</h4>
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          firstName: "Kobe",
+          lastName: "Bryant",
+          score: 80,
+          message: "Hello World"
+        }
+      },
+      methods: {
+        getFullName() {
+          return this.firstName + " " + this.lastName;
+        },
+        getResult() {
+          return this.score >= 60 ? "及格": "不及格";
+        },
+        getReverseMessage() {
+          return this.message.split(" ").reverse().join(" ");
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

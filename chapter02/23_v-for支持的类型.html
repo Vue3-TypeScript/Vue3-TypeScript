@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+
+    <h4>1.个人信息（遍历对象{}）</h4>
+    <ul>
+      <li v-for="(value, key, index) in info">{{value}}-{{key}}-{{index}}</li>
+    </ul>
+    <h4>2.遍历数字number</h4>
+    <ul>
+      <li v-for="(num, index) in 3">{{num}}-{{index}}</li>
+    </ul>
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          info: {
+            name: "why",
+            age: 18,
+            height: 1.88
+          }
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

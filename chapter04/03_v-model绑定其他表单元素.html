@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>p{color: #999;}</style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 1.绑定textarea（cols：显示的列数；rows:显示的行数） -->
+    <div>1. 自我介绍</div>
+    <textarea cols="30" rows="3" v-model="intro"></textarea>
+    <p>文本输入框的值: {{intro}}</p>
+
+    <!-- 2.checkbox单选框（label元素作用是当点击同意协议文本，会自动触发input的点击） -->
+    <span>2. </span>
+    <label for="agree">
+      <!-- id的值需要和label元素for属性的值对应 -->
+      <input id="agree" type="checkbox" v-model="isAgree"> 同意协议
+    </label>
+    <p>单选框的值: {{isAgree}}</p>
+
+    <!-- 3.checkbox多选框（多选框的每个表单元素必须添加value属性，并v-model需绑定同一个数组来存多选的值） -->
+    <span>3. 爱好: </span>
+    <label for="basketball">
+      <input id="basketball" type="checkbox" v-model="hobbies" value="basketball"> 篮球
+    </label>
+    <label for="football">
+      <input id="football" type="checkbox" v-model="hobbies" value="football"> 足球
+    </label>
+    <label for="tennis">
+      <input id="tennis" type="checkbox" v-model="hobbies" value="tennis"> 网球
+    </label>
+    <p>多选框的值: {{hobbies}}</p>
+
+    <!-- 4.radio（单选按钮的每个表单元素必须添加value属性，并v-model需绑定同一个数组来存单选的值） -->
+    <span>4. 性别: </span>
+    <label for="male">
+      <input id="male" type="radio" v-model="gender" value="male">男
+    </label>
+    <label for="female">
+      <input id="female" type="radio" v-model="gender" value="female">女
+    </label>
+    <p>单选按钮的值: {{gender}}</p>
+
+    <!-- 5.select( multiple 按住shift键可支持多选；size:默认展示个数 ) -->
+    <span>5. 喜欢的水果: </span>
+    <select v-model="fruit" multiple size="2">
+      <option value="apple">苹果</option>
+      <option value="orange">橘子</option>
+      <option value="banana">香蕉</option>
+    </select>
+    <p>选择的值: {{fruit}}</p>
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          // 存表单元素输入的值：  
+          intro: "Hello World", // 1.自我介绍
+          isAgree: false,// 2.1 同意协议
+          hobbies: ["basketball"], // 2.2 爱好
+          gender: "", // 3.性别
+          fruit: ["orange"] // 4.喜欢的水果
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

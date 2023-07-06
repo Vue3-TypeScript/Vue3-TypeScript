@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <div 
+      @click="divClick"
+      :style="{width: '100px', 'height': '65px',backgroundColor:'#ddd'}"
+    >
+      div
+      <button @click.stop="btnClick">button按钮</button>
+    </div>
+    <input type="text" @keyup.enter="enterKeyup">
+  </template>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: "Hello World"
+        }
+      },
+      methods: {
+        divClick() {
+          console.log("divClick");
+        },
+        btnClick() {
+          console.log('btnClick');
+        },
+        enterKeyup(event) {
+          console.log("keyup", event.target.value);
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

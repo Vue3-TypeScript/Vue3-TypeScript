@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function getLength(str) {
+      return str.length;
+    }
+
+    console.log("1.正在的代码执行");
+    console.log("2.开始函数");
+    getLength("abc"); // 正确的调用 getLength 函数
+    getLength(); // 错误的调用 getLength 函数(但是IDE并不会提示报错)
+
+    // 当上面的代码报错后, 后续所有的代码都无法继续正常执行了
+    console.log("3.调用结束");
+  </script>
+</body>
+</html>
